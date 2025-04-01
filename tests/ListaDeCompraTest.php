@@ -41,4 +41,17 @@ class ListaDeCompraTest extends TestCase
 
         $this->assertEquals("pan x3", $result);
     }
+
+    /**
+     * @test
+     */
+    public function añadirVariosProductosALaLista()
+    {
+        $carrito = new ListaDeCompra();
+
+        $carrito->instruccion("añadir pan 2");
+        $result = $carrito->instruccion("añadir cocacola 3");
+
+        $this->assertEquals("cocacola x3, pan x2", $result);
+    }
 }
