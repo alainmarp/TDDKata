@@ -17,4 +17,16 @@ class ListaDeCompraTest extends TestCase
 
         $this->assertEquals("pan x1", $result);
     }
+
+    /**
+     * @test
+     */
+    public function eliminarUnicoProductoExistenteDeLaLista()
+    {
+        $carrito = new ListaDeCompra();
+
+        $result = $carrito->instruccion("eliminar pan");
+
+        $this->assertEquals("", $result);
+    }
 }
