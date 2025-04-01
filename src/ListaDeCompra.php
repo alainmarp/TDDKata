@@ -17,7 +17,12 @@ class ListaDeCompra
                 $this->lista = $partes[1] . " x" . $partes[2] . ", " . $this->lista;
                 return $this->lista;
             }
-            return $partes[1] . " x1";
+            if(empty($this->lista)) {
+                $this->lista = $partes[1] . " x1";
+                return $this->lista;
+            }
+            $this->lista = $partes[1] . " x1" . ", " . $this->lista;
+            return $this->lista;
         }
         return "";
     }

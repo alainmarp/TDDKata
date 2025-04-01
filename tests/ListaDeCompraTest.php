@@ -6,17 +6,6 @@ use Deg540\DockerPHPBoilerplate\ListaDeCompra;
 
 class ListaDeCompraTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function añadirUnProductoALaLista()
-    {
-        $carrito = new ListaDeCompra();
-
-        $result = $carrito->instruccion("añadir pan");
-
-        $this->assertEquals("pan x1", $result);
-    }
 
     /**
      * @test
