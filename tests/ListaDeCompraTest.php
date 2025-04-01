@@ -43,4 +43,20 @@ class ListaDeCompraTest extends TestCase
 
         $this->assertEquals("cocacola x3, pan x2", $result);
     }
+
+    /**
+     * @test
+     */
+    public function eliminarUnProductosDeLaListaConVariosProductos()
+    {
+        $carrito = new ListaDeCompra();
+
+        $carrito->instruccion("añadir pan 2");
+        $carrito->instruccion("añadir cocacola 3");
+        $carrito->instruccion("añadir leche 2");
+
+        $result = $carrito->instruccion("eliminar pan");
+
+        $this->assertEquals("leche x2, cocacola x3", $result);
+    }
 }

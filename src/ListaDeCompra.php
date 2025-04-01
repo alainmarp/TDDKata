@@ -7,8 +7,9 @@ class ListaDeCompra
     private string $lista = "";
     public function instruccion (string $instruccion) : string
     {
-        if(str_contains($instruccion, "añadir")){
-            $partes = explode(" ", $instruccion);
+        $partes = explode(" ", $instruccion);
+
+        if(str_contains($instruccion, "añadir")) {
             if(count($partes) > 2) {
                 if(empty($this->lista)) {
                     $this->lista = $partes[1] . " x" . $partes[2];
@@ -23,7 +24,19 @@ class ListaDeCompra
             }
             $this->lista = $partes[1] . " x1" . ", " . $this->lista;
             return $this->lista;
+        } elseif (str_contains($instruccion, "eliminar")) {
+            $productos = explode(",", $this->lista);
+            $aux = "";
+            foreach ($productos as $producto) {
+                if (!str_contains($producto, $partes[1])) {
+                    if(empty($aux)) {
+                        $aux = $producto;
+                    } else {
+                        $aux = $aux . "," .$producto;
+                    }
+                }
+            }
+            return $aux;
         }
-        return "";
     }
 }
