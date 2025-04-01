@@ -14,10 +14,10 @@ class ListaDeCompraTest extends TestCase
     {
         $carrito = new ListaDeCompra();
 
-        $carrito->instruccion("añadir pan 2");
+        $carrito->instruccion("añadir pan");
         $result = $carrito->instruccion("añadir cocacola 3");
 
-        $this->assertEquals("cocacola x3, pan x2", $result);
+        $this->assertEquals("cocacola x3, pan x1", $result);
     }
 
     /**
@@ -50,5 +50,19 @@ class ListaDeCompraTest extends TestCase
         $result = $carrito->instruccion("eliminar agua");
 
         $this->assertEquals("El producto seleccionado no existe", $result);
+    }
+
+    /**
+     * @test
+     */
+    public function añadirMasCantidadDeUnProductoExistenteEnLaLista()
+    {
+        $carrito = new ListaDeCompra();
+
+        $carrito->instruccion("añadir pan 2");
+        $carrito->instruccion("añadir cocacola 3");
+        $result = $carrito->instruccion("añadir pan 5");
+
+        $this->assertEquals("cocacola x3, pan x7", $result);
     }
 }
