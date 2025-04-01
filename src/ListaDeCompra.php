@@ -10,7 +10,7 @@ class ListaDeCompra
         $partes = explode(" ", $instruccion);
 
         if(str_contains($instruccion, "añadir")) {
-            if (str_contains($this->lista, $partes[1])) {
+            if (str_contains($this->lista, $partes[1]) && count($partes) > 2) {
                 $productos = explode(",", $this->lista);
                 $aux = "";
                 foreach ($productos as $producto) {
@@ -23,6 +23,24 @@ class ListaDeCompra
                     } else {
                         $aux2 = explode(" ", $producto);
                         $aux = $aux . ", " . $aux2[1] . " x" . ($aux2[2][1] + intval($partes[2]));
+                    }
+                }
+                $this->lista = $aux;
+                return $this->lista;
+            }
+            if (str_contains($this->lista, $partes[1])) {
+                $productos = explode(",", $this->lista);
+                $aux = "";
+                foreach ($productos as $producto) {
+                    if (!str_contains($producto, $partes[1])) {
+                        if(empty($aux)) {
+                            $aux = $producto;
+                        } else {
+                            $aux = $aux . "," .$producto;
+                        }
+                    } else {
+                        $aux2 = explode(" ", $producto);
+                        $aux = $aux . ", " . $aux2[1] . " x" . ($aux2[2][1] + 1);
                     }
                 }
                 $this->lista = $aux;

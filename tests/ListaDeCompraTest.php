@@ -61,8 +61,8 @@ class ListaDeCompraTest extends TestCase
 
         $carrito->instruccion("añadir pan 2");
         $carrito->instruccion("añadir cocacola 3");
-        $result = $carrito->instruccion("añadir pan 5");
+        $result = $carrito->instruccion("añadir pan");
 
-        $this->assertEquals("cocacola x3, pan x7", $result);
+        $this->assertEquals("cocacola x3, pan x3", $result);
     }
 }
