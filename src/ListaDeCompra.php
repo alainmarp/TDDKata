@@ -25,6 +25,9 @@ class ListaDeCompra
             $this->lista = $partes[1] . " x1" . ", " . $this->lista;
             return $this->lista;
         } elseif (str_contains($instruccion, "eliminar")) {
+            if (!str_contains($this->lista, $partes[1])) {
+                return "El producto seleccionado no existe";
+            }
             $productos = explode(",", $this->lista);
             $aux = "";
             foreach ($productos as $producto) {
